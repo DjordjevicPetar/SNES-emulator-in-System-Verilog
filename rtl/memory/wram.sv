@@ -4,7 +4,7 @@ module wram (
     input logic        reset_ni,
 
     // Address bus A
-    input logic        ram_sel_ni,
+    input logic        wram_sel_ni,
     input logic        enable_i,
     input logic        a_bus_rd_ni,
     input logic        a_bus_wr_ni,
@@ -35,8 +35,8 @@ logic           b_read_req;
 logic           b_write_req;
 logic [16:0]    a_effective_addr;
 
-assign a_read_req = !ram_sel_ni && !a_bus_rd_ni;
-assign a_write_req = !ram_sel_ni && !a_bus_wr_ni;
+assign a_read_req = !wram_sel_ni && !a_bus_rd_ni;
+assign a_write_req = !wram_sel_ni && !a_bus_wr_ni;
 assign b_read_req = map_hit && !b_bus_rd_ni && (b_bus_i[1:0] == 2'b00);
 assign b_write_req = map_hit && !b_bus_wr_ni;
 assign a_effective_addr = (enable_i) ? a_bus_i : {4'b0000, a_bus_i[12:0]};

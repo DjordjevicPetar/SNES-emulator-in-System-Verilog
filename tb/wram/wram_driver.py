@@ -29,7 +29,7 @@ class WramDriver:
     def drive_idle(self):
         self.dut.refresh_i.value = 0
 
-        self.dut.ram_sel_ni.value = 1
+        self.dut.wram_sel_ni.value = 1
         self.dut.enable_i.value = 0
         self.dut.a_bus_rd_ni.value = 1
         self.dut.a_bus_wr_ni.value = 1
@@ -77,7 +77,7 @@ class WramDriver:
         await FallingEdge(self.dut.clk_i)
         self.drive_idle()
         self.dut.enable_i.value = int(full_address)
-        self.dut.ram_sel_ni.value = 0 if selected else 1
+        self.dut.wram_sel_ni.value = 0 if selected else 1
         self.dut.a_bus_wr_ni.value = 0
         self.dut.a_bus_i.value = address
         self.dut.data_bus_i.value = data
@@ -91,7 +91,7 @@ class WramDriver:
         await FallingEdge(self.dut.clk_i)
         self.drive_idle()
         self.dut.enable_i.value = int(full_address)
-        self.dut.ram_sel_ni.value = 0 if selected else 1
+        self.dut.wram_sel_ni.value = 0 if selected else 1
         self.dut.a_bus_rd_ni.value = 0
         self.dut.a_bus_i.value = address
 
